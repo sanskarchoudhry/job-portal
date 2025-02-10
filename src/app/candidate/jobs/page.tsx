@@ -1,12 +1,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
-
-interface Job {
-  id: number;
-  title: string;
-  category: string;
-  location: string;
-}
+import { Job } from "@/schema/types";
 
 export default function JobListings() {
   const [jobs, setJobs] = useState<Job[]>([]);
