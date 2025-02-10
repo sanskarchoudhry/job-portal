@@ -3,18 +3,16 @@ import FormWrapper from "./_components/FormWrapper";
 import Input from "./_components/Input";
 import UploadInput from "./_components/UploadInput";
 
-export default function ApplicationForm({
-  searchParams,
-}: {
-  searchParams: { "job-id": string };
-}) {
+const ApplicationForm = async ({ params }: { params: { jobID: string } }) => {
+  const jobId = await params.jobID;
+  console.log(jobId);
+
   return (
     <div>
-      <FormWrapper jobID={searchParams["job-id"]}>
+      <FormWrapper jobID={jobId}>
         <Input inputLabel="First Name" inputType="text" inputName="firstName" />
         <Input inputLabel="Last Name" inputType="text" inputName="lastName" />
         <Input inputLabel="Email" inputType="email" inputName="userEmail" />
-        <Input inputLabel="Last Name" inputType="text" inputName="lastName" />
         <UploadInput
           inputLabel="Attach resume"
           inputType="file"
@@ -25,4 +23,6 @@ export default function ApplicationForm({
       </FormWrapper>
     </div>
   );
-}
+};
+
+export default ApplicationForm;
