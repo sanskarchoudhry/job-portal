@@ -18,7 +18,21 @@ export default function UploadInput({
   return (
     <div>
       <label htmlFor={inputID}>{inputLabel}</label>
-      <input type={inputType} id={inputID} {...register(inputName)} />
+      <input
+        type={inputType}
+        id={inputID}
+        {...register(inputName, {
+          required: "File is required",
+          validate: {
+            fileType: (fileList) =>
+              fileList[0]?.type === "application/pdf" ||
+              fileList[0]?.type ===
+                "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
+              "Only PDF or DOCX files are allowed",
+          },
+        })}
+        accept=".pdf,.docx"
+      />
     </div>
   );
 }
